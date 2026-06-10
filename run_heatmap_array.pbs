@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -l walltime=04:00:00
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -N heatmap_2d
+#PBS -J 0-63
+
+module load Python-bundle-ICL/2025.02-gfbf-2024a
+
+cd $PBS_O_WORKDIR
+
+export MPLBACKEND=Agg # no display
+
+mkdir -p results/heatmap logs
+
+python3 run_heatmap_rep.py $PBS_ARRAY_INDEX

@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -l walltime=12:00:00
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -N pmcmc_array
+#PBS -J 0-99
+
+module load Python-bundle-ICL/2025.02-gfbf-2024a
+
+cd $PBS_O_WORKDIR
+
+mkdir -p results logs
+
+python3 run_pmcmc_rep.py $PBS_ARRAY_INDEX
